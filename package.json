@@ -4,6 +4,7 @@
   "description": "Api de inserção de clientes",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "dev": "nodemon index"
   },
   "author": "Guilherme Prado",
