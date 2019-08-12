@@ -1,5 +1,5 @@
-const { generateId } = require('../utils/generateId')
 const mongodb = require('../dbConnection')
+const { ObjectId } = require('mongodb')
 
 const create = async (req, res) => {
   if (!req && !req.body) throw new Error('Please, send body.')
@@ -26,7 +26,7 @@ const remove = async (req, res) => {
 
   idsToDelete.forEach(async element => {
     await mongodb('clients').removeOne({
-      _id: element
+      _id: ObjectId(element)
     })
   })
 
