@@ -4,8 +4,7 @@ const clientsRoutes = express.Router()
 
 clientsRoutes.post('/create', controller.create)
 clientsRoutes.get('/list', controller.list)
-clientsRoutes.put('/put', controller.list)
-clientsRoutes.get('/get/:id', controller.list)
+clientsRoutes.put('/edit', controller.edit)
 clientsRoutes.post('/remove', controller.remove)
 
 module.exports = clientsRoutes

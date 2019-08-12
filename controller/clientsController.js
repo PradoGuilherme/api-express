@@ -34,8 +34,23 @@ const remove = async (req, res) => {
   res.json({ error: null, data: RESPONSE })
 }
 
+const edit = async (req, res) => {
+  if (!req && !req.body) throw new Error('Please, send body.')
+
+  const body = req.body
+  const _id = body._id
+  delete body._id
+  await mongodb('clients').updateOne({
+    _id: ObjectId(_id)
+  }, { $set: { ...req.body } })
+
+  const RESPONSE = await mongodb('clients').find().toArray()
+  res.json({ error: null, data: RESPONSE })
+}
+
 module.exports = {
   create,
   remove,
-  list
+  list,
+  edit
 }
