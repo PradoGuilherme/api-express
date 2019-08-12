@@ -3,8 +3,11 @@ const cors = require('cors')
 const app = express()
 const bodyParser = require('body-parser')
 const dbConnection = require('./dbConnection')
+const logger = require('morgan')
+require('dotenv').config()
 
 app.use(cors())
+app.use(logger('dev'))
 app.use(bodyParser.json())
 
 app.use('/', require('./routes'))
