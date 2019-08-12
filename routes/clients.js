@@ -6,6 +6,6 @@ clientsRoutes.post('/create', controller.create)
 clientsRoutes.get('/list', controller.list)
 clientsRoutes.put('/put', controller.list)
 clientsRoutes.get('/get/:id', controller.list)
-clientsRoutes.delete('/delete', controller.remove)
+clientsRoutes.post('/remove', controller.remove)
 
 module.exports = clientsRoutes

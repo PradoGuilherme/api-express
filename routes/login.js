@@ -1,4 +1,5 @@
 const mongodb = require('../dbConnection')
+const jwt = require('jsonwebtoken')
 
 const login = async (req, res) => {
   try {
@@ -11,11 +12,14 @@ const login = async (req, res) => {
       password: body.password
     })
 
-    if(!user || !user._id) throw new Error('Não existe usuário com estes dados.')
+    if (!user || !user._id) throw new Error('Não existe usuário com estes dados.')
 
-    res.json({ error: null, data: user })
+    const token = jwt.sign({ _id: user._id }, process.env.SECRET, {
+      expiresIn: 259200
+    })
+
+    res.json({ error: null, data: { token: token } })
   } catch (error) {
-    console.log("TCL: login -> error", error)
     res.json({ error: error.message || 'Erro interno.', data: null })
   }
 }
